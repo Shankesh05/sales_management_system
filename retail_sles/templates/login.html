@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sales Management System</title>
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif; /* Modern font */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+            background: url('https://img.freepik.com/premium-photo/digital-background-futuristic-e-commerce-metrics-with-shopping-cart-online-retail-analytics_1275456-1913.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff; /* White text for contrast */
+        }
+
+        /* Background Overlay */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay for better readability */
+            z-index: -1;
+        }
+
+        /* Login Container */
+        .login-container {
+            background-color: rgba(33, 37, 41, 0.9); /* Dark grey container */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .login-container input,
+        .login-container select {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent */
+            color: #ffffff; /* White text */
+        }
+
+        .login-container input::placeholder {
+            color: #ccc; /* Lighter placeholder */
+        }
+
+        /* Ensure Dropdown is Fully Visible */
+        .login-container select {
+            background-color: #444; /* Solid background for dropdown */
+            color: #fff; /* White text */
+            appearance: none; /* Removes default dropdown arrow (optional) */
+            cursor: pointer; /* Pointer cursor */
+        }
+
+        /* Button Styling */
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff; /* Blue button */
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #0056b9; /* Darker blue on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Login Form -->
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="POST" action="{{ url_for('login_page') }}">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <select name="userType" required>
+                <option value="admin">Admin</option>
+                <option value="staff">Staff</option>
+                <option value="customer">Customer</option>
+            </select>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

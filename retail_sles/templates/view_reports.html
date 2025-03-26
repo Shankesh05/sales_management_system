@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>View Reports - Retail Sales Management System</title>
+    <style>
+        /* Background Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://img.freepik.com/premium-photo/digital-background-futuristic-e-commerce-metrics-with-shopping-cart-online-retail-analytics_1275456-1913.jpg') no-repeat center center fixed; 
+            background-size: cover;
+            color: white;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8); /* Dark overlay for readability */
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Chart Styling */
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .chart {
+            flex: 1;
+            margin: 10px;
+            min-width: 500px; /* Ensures responsiveness */
+            height: 500px;
+        }
+
+        /* Button Styling */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Sales Reports & Analytics</h1>
+
+        <div class="chart-container">
+            <!-- Pie Chart -->
+            <div class="chart">
+                <h2>Sales Distribution (Pie Chart)</h2>
+                <img src="{{ url_for('sales_chart') }}" alt="Sales Pie Chart">
+            </div>
+
+            <!-- Bar Chart -->
+            <div class="chart">
+                <h2>Total Sales per Product (Bar Chart)</h2>
+                <img src="{{ url_for('sales_chart') }}" alt="Sales Bar Chart">
+            </div>
+        </div>
+
+        <a href="/view_products" class="btn">Back to Products</a>
+    </div>
+
+</body>
+
+</html>

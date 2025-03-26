@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Sales Management System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: url('https://img.freepik.com/premium-photo/digital-background-futuristic-e-commerce-metrics-with-shopping-cart-online-retail-analytics_1275456-1913.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+        }
+
+        /* Overlay for better readability */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: -1;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            background: rgba(33, 37, 41, 0.95);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(52, 152, 219, 0.8);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 120px 20px 60px;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(33, 37, 41, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+        }
+
+        /* Card Section */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .card {
+            background: rgba(52, 58, 64, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            flex: 1;
+            min-width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin: 15px 0;
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 16px;
+            color: #ffffff;
+            background: #3498db;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .card a:hover {
+            background: #1e70bf;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(33, 37, 41, 0.95);
+            padding: 20px;
+            text-align: center;
+            color: #ffffff;
+            font-size: 0.9rem;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #1e70bf;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+
+            .card-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">Admin Dashboard</div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="#" class="active">Dashboard</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Welcome Section -->
+        <div class="container">
+            <h1>Admin Dashboard</h1>
+            <h2>Efficiently manage users, products, and reports.</h2>
+        </div>
+
+        <!-- Admin Actions Section -->
+        <div class="container">
+            <div class="card-container">
+
+                <!-- Manage Users -->
+                <div class="card">
+                    <i class="fas fa-users-cog"></i>
+                    <h3>Manage Users</h3>
+                    <p>Add, edit, or delete user accounts.</p>
+                    <a href="{{ url_for('view_users') }}">View Users</a>
+                </div>
+
+                <!-- Manage Products -->
+                <div class="card">
+                    <i class="fas fa-box"></i>
+                    <h3>Manage Products</h3>
+                    <p>Update product inventory and manage stock.</p>
+                    <a href="{{ url_for('view_products') }}">View Products</a>
+                </div>
+
+                <!-- View Reports -->
+                <div class="card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Reports</h3>
+                    <p>Generate and analyze business reports.</p>
+                    <a href="{{ url_for('view_reports') }}">View Reports</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>
+            <a href="#">Dashboard</a> |
+            <a href="#">Manage Users</a> |
+            <a href="#">Manage Products</a> |
+            <a href="#">Reports</a>
+        </p>
+    </div>
+
+</body>
+
+</html>

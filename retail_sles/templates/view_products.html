@@ -1,0 +1,367 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* Global Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding-top: 80px; /* Offset for fixed header */
+        background: url('https://img.freepik.com/premium-photo/digital-background-futuristic-e-commerce-metrics-with-shopping-cart-online-retail-analytics_1275456-1913.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #ffffff;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    /* Overlay Effect */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: -1;
+    }
+
+    /* Header Section */
+    .header {
+        width: 100%;
+        background-color: rgba(33, 37, 41, 0.95);
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    .nav-links a {
+        color: #ffffff;
+        text-decoration: none;
+        margin: 0 15px;
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+        background-color: rgba(52, 58, 64, 0.8);
+    }
+
+    /* Main Content Container */
+    .container {
+        background: rgba(33, 37, 41, 0.9);
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+        width: 90%;
+        max-width: 1400px;
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+
+    /* Button Styling */
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 1rem;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.3s ease;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 30px 0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    thead {
+        position: sticky;
+        top: 0;
+        background: rgba(52, 58, 64, 0.95);
+        z-index: 5;
+    }
+
+    th, td {
+        padding: 15px;
+        border: 1px solid #555;
+        text-align: center;
+    }
+
+    th {
+        background-color: rgba(52, 58, 64, 0.9);
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    tr:hover {
+        background-color: rgba(52, 58, 64, 0.7);
+    }
+
+    /* Stock Status */
+    .in-stock {
+        color: #28a745; /* Green for in-stock */
+    }
+
+    .out-of-stock {
+        color: #dc3545; /* Red for out-of-stock */
+    }
+
+    /* Add Product Form */
+    .add-product-form {
+        margin-top: 40px;
+        background: rgba(33, 37, 41, 0.9);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+        text-align: left;
+    }
+
+    .add-product-form h3 {
+        margin-bottom: 20px;
+        font-size: 2rem;
+        color: #fff;
+    }
+
+    .add-product-form label {
+        display: block;
+        margin-top: 10px;
+        font-size: 1rem;
+    }
+
+    .add-product-form input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .add-product-form button {
+        margin-top: 20px;
+        padding: 12px 20px;
+        font-size: 1rem;
+        color: white;
+        background-color: #28a745;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .add-product-form button:hover {
+        background-color: #218838;
+    }
+
+
+    /* Footer */
+    .footer {
+        background: rgba(33, 37, 41, 0.95);
+        padding: 20px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #ffffff;
+    }
+
+    .footer a {
+        color: #ffffff;
+        margin: 0 15px;
+        text-decoration: none;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .nav-links {
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        .container {
+            padding: 20px;
+        }
+    }
+</style>
+
+<!-- Header -->
+<div class="header">
+    <div class="logo">Admin Dashboard</div>
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('admin_dashboard') }}" class="active">Dashboard</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+    <h2>Product Inventory Overview</h2>
+
+    {% if products %}
+    <table>
+        <thead>
+            <tr>
+                <th>Product ID</th>
+
+                <th>Product Name</th>
+                <th>Status</th>
+                <th>Price (₹)</th>
+                <th>Stock Available</th>
+                <th>Stock Required</th>
+                <th>Sales</th>
+                <th>Profit (₹)</th>
+                <th>Loss (₹)</th>
+                <th>Shipment Date</th>
+                <th>edit or delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.product_name }}</td>
+                <td class="{{ 'in-stock' if product.stock_available > 0 else 'out-of-stock' }}">
+                    {{ "In Stock" if product.stock_available > 0 else "Out of Stock" }}
+                </td>
+                <td>₹{{ product.price }}</td>
+                <td>{{ product.stock_available }}</td>
+                <td>{{ product.required_stock }}</td>
+                <td>{{ product.sales }}</td>
+                <td>₹{{ product.profit }}</td>
+                <td>₹{{ product.loss }}</td>
+                <td>{{ product.shipment_date }}</td>
+                <td>
+                    <a href="{{ url_for('edit_product', product_id=product.id) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="{{ url_for('delete_product', product_id=product.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No products available at the moment.</p>
+    {% endif %}
+
+    <!-- Add Product Form (Below Table) -->
+    <div class="add-product-form">
+        <h3>Add New Product</h3>
+
+        <form action="{{ url_for('add_product') }}" method="POST">
+
+            <!-- Product ID -->
+            <label for="id">Product ID:</label>
+            <input type="number" name="id" required>
+
+
+            <!-- Product Name -->
+            <label for="product_name">Product Name:</label>
+            <input type="text" name="product_name" required>
+
+            <!-- Price -->
+            <label for="price">Price (₹):</label>
+            <input type="number" name="price" step="0.01" required>
+
+            <!-- Stock Available -->
+            <label for="stock_available">Stock Available:</label>
+            <input type="number" name="stock_available" required>
+
+            <!-- Stock Required -->
+            <label for="required_stock">Stock Required:</label>
+            <input type="number" name="required_stock" required>
+
+            <!-- Sales -->
+            <label for="sales">Sales:</label>
+            <input type="number" name="sales" value="0">
+
+            <!-- Profit -->
+            <label for="profit">Profit (₹):</label>
+            <input type="number" name="profit" step="0.01" value="0">
+
+            <!-- Loss -->
+            <label for="loss">Loss (₹):</label>
+            <input type="number" name="loss" step="0.01" value="0">
+
+            <!-- Shipment Date -->
+            <label for="shipment_date">Shipment Date:</label>
+            <input type="date" name="shipment_date" required>
+
+            <!-- Submit Button -->
+            <button type="submit">Add Product</button>
+
+        </form>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>
+        <a href="#">Dashboard</a> |
+        <a href="#">Manage Users</a> |
+        <a href="#">Manage Products</a> |
+        <a href="#">Reports</a>
+    </p>
+</div>
+
+{% endblock %}
